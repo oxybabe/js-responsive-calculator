@@ -22,7 +22,7 @@ The goal is to create a working calculator, identical in functionality to Calcul
 
 **You are not allowed to use the JavaScript function `eval`**
 
-- Crea.js`te and commit `main
+- Create and commit `main.js`
 - Link to your `main.js` using a `<script>` tag.
 - Write an alert inside your `main.js` to ensure that your file is linked properly; it should alert "hello" when you refresh the page
 
