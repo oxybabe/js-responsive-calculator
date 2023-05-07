@@ -27,8 +27,8 @@
     operatorButtons[i].addEventListener("click", pushOperator);
   }
   function clear(event) {
-    calculate = [];
-    document.querySelector('.calculator-screen').value = 0;
+    calculation = [];
+    document.querySelector('.calculator-screen').value = "0";
   }
 
   function calculate(event) {
@@ -39,17 +39,19 @@
     for (let i = 0; i < calculation.length; i++) {
       let num = calculation[i];
       if (isNaN(num)) {
+        //adding an empty space to get ready to split the array(not a number), adding a space between the operators
         num = num + " ";
         input = input + " ";
       }
       input += num;
     }
     console.log("input is" + input);
+    //do a split to create a new array
     let newArray = input.split(" ");
     console.log(newArray);
     let finalAnswer = 0;
     for (let i = 0; i < newArray.length; i++) {
-      //find previous value that is not an operator, instead a numeric value
+      //find previous the value that is not an operator, instead a numeric value
       let num1 = 0;
       if (i > 0) {
         //must be an element after the first one
@@ -62,6 +64,7 @@
       let currentValue = newArray[i];
       let lastNum = newArray.length - 1;
       //must know which is the last position of the array to know when to stop
+      //check the last num in the array to see it's position
       if (currentValue === "+" && i != lastNum) {
         let num2 = newArray[i + 1];
         if (!isNaN(num2)) {
@@ -87,6 +90,7 @@
         }
       }
       if (i === lastNum) {
+        //keeps last value in memory(in the array)
         calculation = [finalAnswer];
         console.log("New calculation" + calculation);
         document.querySelector('.calculator-screen').value = finalAnswer;
