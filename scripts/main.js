@@ -1,12 +1,9 @@
 (function () {
     "use strict";
     const calculation = []
-
-
     //passes the event object to each event object with a number, (event) parameter semantic 
     //event.target is the entire DOM node, targeting the class number in the entire node list
     //created a for loop so the pushNumber function has the click event added to the number button
-    
     function pushNumber(event) {
         // alert(event.target.value);
         calculation.push(event.target.value);
@@ -30,34 +27,77 @@
     function calculate(event) {
         alert(event.target.value);
         //for each element in the array
-        let answer = 0;
+        //iterate through the array and do the actual operations
         let input = '';
         for(let i = 0; i < calculation.length; i++) {
             let num = calculation[i];
             if(isNaN(num)){
-                num += ' ';
-                input += ' ';
+                num = num + ' ';
+                input = input + ' ';
             }
             input += num;
+        
         }
         console.log('input is' + input );
         let newArray = input.split(" ");
         console.log(newArray);
-        //iterate through the array and do the actual operations
-       
-    }
-    // console.log(calculation[i])
-    // for(let i = 0; i < ); 
-    // let answer = 0; 
-    const calculateButton = document.querySelector('.equal-sign');
+        let finalAnswer = 0;
+        for(let i = 0; i < newArray.length; i++) {
+        //find previous value that is not an operator, instead a numeric value
+            let previousNum = 0;
+            if (i > 0) {
+        //must be an element after the first one
+        for (let x = i - 1; x >= 0; x--)
+        //traverse the array from the current position to the previous positions until we find the last numeric value
+        if(!isNaN(newArray[x])) {
+            previousNum = newArray[x];    
+        }
+        }
+        
+            }
+        let currentValue = newArray[i];
+        let lastNum = newArray.length - 1;
+        //must know which is the last position of the array to know when to stop
+        if(currentValue == '+' && i != lastNum) {
+            let nextNum = newArray[i+1];
+            if(!isNaN(nextNum)) {
+                finalAnswer = Number(num1) + Number(num2)
+            }
+        }
+        if(currentValue == '-' && i != lastNum) {
+            let nextNum = newArray[i+1];
+            if(!isNaN(nextNum)) {
+                finalAnswer = Number(num1) - Number(num2);
+            }
+        }
+        if(currentValue == '*' && i != lastNum) {
+            let nextNum = newArray[i+1];
+            if(!isNaN(nextNum)) {
+                finalAnswer = Number(num1) * Number(num2);
+            }
+        }
+        if(currentValue == '/' && i != lastNum) {
+            let nextNum = newArray[i+1];
+            if(!isNaN(nextNum)) {
+                finalAnswer = Number(num1) / Number(num2);
+            }
+        }
+        if(i == lastNum);
+        calculation = [finalAnswer];
+        console.log('New calculation' + calculation);
+        return finalAnswer;
+
+        }
+        
+        const calculateButton = document.querySelector('.equal-sign');
         calculateButton.addEventListener("click", calculate);
-    
-        //need to refactor to push into the array
-    
+        
+    }
 
-
+    // console.log(calculation[i])
     
-})();
+    
+)();
 
 
 
