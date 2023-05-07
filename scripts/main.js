@@ -6,7 +6,9 @@
   //created a for loop so the pushNumber function has the click event added to the number button
   function pushNumber(event) {
     // alert(event.target.value);
+    document.querySelector('.calculator-screen').value = event.target.value;
     calculation.push(event.target.value);
+
   }
   const numButtons = document.querySelectorAll(".number");
   for (let i = 0; i < numButtons.length; i++) {
@@ -26,6 +28,7 @@
   }
   function clear(event) {
     calculate = [];
+    document.querySelector('.calculator-screen').value = 0;
   }
 
   function calculate(event) {
@@ -86,6 +89,7 @@
       if (i === lastNum) {
         calculation = [finalAnswer];
         console.log("New calculation" + calculation);
+        document.querySelector('.calculator-screen').value = finalAnswer;
         return finalAnswer;
       }
     }
