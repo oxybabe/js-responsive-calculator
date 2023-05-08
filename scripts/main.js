@@ -1,19 +1,28 @@
 (function () {
   "use strict";
+  //calculation variable set to an empty array
+
   let calculation = [];
+
   //passes the event object to each event object with a number, (event) parameter semantic
   //event.target is the entire DOM node, targeting the class number in the entire node list
   //created a for loop so the pushNumber function has the click event added to the number button
+  //nodes list is array like but not an array
   function pushNumber(event) {
     // alert(event.target.value);
-    document.querySelector('.calculator-screen').value = event.target.value;
+    document.querySelector(".calculator-screen").value = event.target.value;
     calculation.push(event.target.value);
-
   }
-  const numButtons = document.querySelectorAll(".number");
+  //query selector allows you to target by class, div, ID, etc.
+  const numButtons = document.querySelectorAll(".number"); //. means class, selecting the class number, # looks for ID
   for (let i = 0; i < numButtons.length; i++) {
+    //grabbing each number button when clicked
     numButtons[i].addEventListener("click", pushNumber);
   }
+  //for each method: .forEach grabs the functions and drops it in as an argument
+  //numberButtons.forEach(function (button) {
+  //button.addEvenListener("click", pushNumber);
+  //});
 
   function pushOperator(event) {
     // alert(event.target.value);
@@ -28,16 +37,39 @@
   }
   function clear(event) {
     calculation = [];
-    document.querySelector('.calculator-screen').value = "0";
+    document.querySelector(".calculator-screen").value = "0";
   }
 
   function calculate(event) {
     // alert(event.target.value);
     //for each element in the array
     //iterate through the array and do the actual operations
+    //let num1= "",
+    //    num2= "",
+    //   operator = null;
+    //const operators = ["*", "/", "+", "-"];
+    // let result
     let input = "";
     for (let i = 0; i < calculation.length; i++) {
       let num = calculation[i];
+      //Notes from class:
+      //if(operators.includes(char)) {
+      // operator = char;
+      // else if(!operator) {
+      // num1 += char;
+      // else if (operator) {
+      // num2 += char;
+      //}
+      //}
+      // num1 = parseInt(num1);
+      //  num2 = parseInt(num1)};
+
+      //if(operator === "+") {
+      // else if(operator === "-") {
+      // result = num1 - num2
+      //}
+      // return result;
+      //}
       if (isNaN(num)) {
         //adding an empty space to get ready to split the array(not a number), adding a space between the operators
         num = num + " ";
@@ -93,7 +125,7 @@
         //keeps last value in memory(in the array)
         calculation = [finalAnswer];
         console.log("New calculation" + calculation);
-        document.querySelector('.calculator-screen').value = finalAnswer;
+        document.querySelector(".calculator-screen").value = finalAnswer;
         return finalAnswer;
       }
     }
@@ -104,7 +136,6 @@
 
   const clearButton = document.querySelector(".clear");
   clearButton.addEventListener("click", clear);
-
 })();
 
 // console.log(calculation[i])
